@@ -1,0 +1,18 @@
+$textcolor: #2c2c2c;
+
+@mixin font-weight($weight) {
+  $weights: (thin: 100,
+      light: 300,
+      normal: 400,
+      medium: 500,
+      bold: 700,
+      heavy: 900);
+
+  $output: $weight;
+
+  @if map-has-key($weights, $weight) {
+    $output: map-get($weights, $weight);
+  }
+
+  font-weight: $output;
+}

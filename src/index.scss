@@ -1,0 +1,25 @@
+@import "./scss/variables";
+
+html {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: $textcolor;
+
+  &:hover {
+    color: darken($textcolor, 20%);
+  }
+}
