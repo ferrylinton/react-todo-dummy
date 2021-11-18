@@ -2,6 +2,7 @@
 
 html {
   box-sizing: border-box;
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
 }
 
 * {
@@ -17,9 +18,9 @@ html {
 
 a {
   text-decoration: none;
-  color: $textcolor;
+  color: $primary-text-color;
 
   &:hover {
-    color: darken($textcolor, 20%);
+    color: darken($primary-text-color, 30%);
   }
 }

@@ -1,39 +1,32 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { FaHome, FaInfoCircle, FaUserNinja, FaSignInAlt, FaUserPlus } from 'react-icons/fa';
 
 import './navbar.scss'
 
 function Navbar() {
+
+  const [showMenu, setShowMenu] = React.useState(false);
+
+  React.useEffect(() => {
+    console.log(`showMenu = ${showMenu}`);
+  });
+
   return (
-    <nav className="navbar">
-      <input type="checkbox" id="menu-chk" />
-      <ul>
-        <li className="brand">
-          <Link to="/">TODO</Link>
-        </li>
-        <li className="menu-btn">
-          <label htmlFor="menu-chk" className="hamburger">
-            <span className="bar"></span>
-            <span className="bar"></span>
-            <span className="bar"></span>
-          </label>
-        </li>
-        <li className="menu-item">
-          <Link to="/">Home</Link>
-        </li>
-        <li className="menu-item">
-          <Link to="/about">About Us</Link>
-        </li>
-        <li className="menu-item">
-          <Link to="/author">Author</Link>
-        </li>
-        <li className="menu-item menu-sec">
-          <Link to="/signin">Signin</Link>
-        </li>
-        <li className="menu-item menu-sec">
-          <Link to="/signin">Signout</Link>
-        </li>
-        
-      </ul>
+    <nav className={showMenu ? "navbar clearfix active" : "navbar clearfix"}>
+      <Link className="menu-brand" to="/">TODO</Link>
+      <button className="menu-btn" onClick={() => setShowMenu(!showMenu)}>
+        <span className="bar"></span>
+        <span className="bar"></span>
+        <span className="bar"></span>
+      </button>
+      <div className="menu-item">
+        <Link to="/"><FaHome/> <span>Home</span></Link>
+        <Link to="/about"><FaInfoCircle /> <span>About</span></Link>
+        <Link to="/author"><FaUserNinja /> <span>Author</span></Link>
+        <Link to="/signin"><FaSignInAlt /> <span>SignIn</span></Link>
+        <Link to="/signup"><FaUserPlus /> <span>SignUp</span></Link>
+      </div>
     </nav>
   )
 }

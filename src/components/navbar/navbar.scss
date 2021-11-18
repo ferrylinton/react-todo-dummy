@@ -1,72 +1,33 @@
 @import "../../scss/variables";
 
 .navbar {
-  border-bottom: solid 1px #cccccc;
   z-index: 9000;
   position: relative;
+  background-color: $primary-color;
+}
 
-  ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    list-style: none;
-    height: 50px;
+.menu-brand {
+  float: left;
+  height: 45px;
+  line-height: 45px;
+  padding: 0 15px;
+  font-weight: bold;
+  font-size: 30px;
+  letter-spacing: 3px;
+  text-shadow: 1px 1px 1px #000;
+  color: $primary-color-text;
 
-    li {
-      display: flex;
-      align-items: center;
-      height: 50px;
-      vertical-align: middle;
-      background-color: #ffffff;
-
-
-      a {
-        width: 100%;
-        padding: 10px;
-        display: block;
-        text-align: center;
-      }
-
-      &.brand {
-        font-weight: bold;
-        font-size: 20px;
-      }
-
-      &.menu-btn {
-        order: 1;
-      }
-
-      &.menu-item {
-        border-bottom: solid 1px #cccccc;
-        order: 3;
-        width: 100%;
-        visibility: hidden;
-        opacity: 0;
-        transition: visibility 0s, opacity 0.5s linear;
-
-        &:hover{
-          @include font-weight(bold);
-        }
-      }
-
-      &.menu-sec {
-        order: 2;
-      }
-
-    }
+  &:hover {
+    color: darken($primary-color-text, 10%);
   }
-
 }
 
-#menu-chk {
-  display: none;
-}
-
-.hamburger {
-
-  padding: 5px 10px;
-  display: block;
+.menu-btn {
+  float: right;
+  height: 45px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  padding: 0 .75rem;
 
   .bar {
     display: block;
@@ -75,40 +36,132 @@
     margin: 5px auto;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-    background-color: #101010;
+    background-color: $primary-color-text;
+  }
+}
+
+.menu-item {
+  position: absolute;
+  top: 45px;
+  width: 100%;
+  max-height: 0;
+  transition: max-height 0.15s ease-out;
+  background-color: lighten($primary-color, 8%);
+  overflow: hidden;
+}
+
+.menu-item a {
+  display: inline-block;
+  width: 100%;
+  line-height: 45px;
+  text-transform: uppercase;
+  border-bottom: solid 1px lighten($primary-color, 5%);
+  color: darken($primary-color-text, 10%);
+
+  &:hover {
+    background-color: lighten($primary-color, 6%);
+    color: $primary-color-text;
+  }
+
+  span {
+    vertical-align: middle;
+  }
+
+  svg {
+    vertical-align: middle;
+    margin: 0 8px 0 15px;
+    height: 15px;
+    width: 15px;
   }
 
 }
 
-#menu-chk:checked~ul {
+.navbar.active {
 
-  li {
+  .menu-btn {
 
-    &:nth-child(1),
-    &:nth-child(2) {
-      margin-bottom: 2px;
+    .bar:nth-child(2) {
+      opacity: 0;
     }
 
-    &.menu-item {
-      visibility: visible;
-      opacity: 1;
+    .bar:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
     }
 
-    .hamburger {
-
-      .bar:nth-child(2) {
-        opacity: 0;
-      }
-
-      .bar:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-      }
-
-      .bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-      }
-
+    .bar:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
     }
+
   }
 
+  .menu-item {
+    max-height: 250px;
+    transition: max-height 0.25s ease-in;
+  }
+
+}
+
+@media (min-width: 576px) {
+
+  .menu-btn {
+    display: none;
+  }
+
+  .menu-item {
+    top: 0;
+    width: auto;
+    float: right;
+    position: relative;
+    max-height: none;
+    background-color: transparent;
+    margin-right: 10px;
+  }
+
+  .menu-item a {
+    width: auto;
+    border-bottom: none;
+    padding: 0 10px;
+
+    svg {
+      display: none;
+    }
+
+  }
+
+}
+
+@media (min-width: 768px) {
+
+  .menu-brand {
+    height: 60px;
+    line-height: 60px;
+  }
+
+  .menu-item a {
+    padding: 0 15px;
+    line-height: 60px;
+
+    svg {
+      display: inline-block;
+      margin: 0 5px 0 0;
+    }
+
+  }
+
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.clearfix:after {
+  content: ".";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
 }
