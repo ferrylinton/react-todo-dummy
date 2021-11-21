@@ -1,5 +1,10 @@
 @import "../../scss/variables";
 
+@font-face {
+  font-family: "Righteous";
+  src: local("Righteous"), url("../../fonts/Righteous-Regular.ttf") format("truetype");
+}
+
 .navbar {
   z-index: 9000;
   position: relative;
@@ -16,6 +21,8 @@
   letter-spacing: 3px;
   text-shadow: 1px 1px 1px #000;
   color: $primary-color-text;
+  text-transform: lowercase;
+  font-family: 'Righteous', cursive;
 
   &:hover {
     color: darken($primary-color-text, 10%);
@@ -27,7 +34,7 @@
   height: 45px;
   background-color: transparent;
   border: 1px solid transparent;
-  padding: 0 .75rem;
+  padding: 0 15px;
 
   .bar {
     display: block;

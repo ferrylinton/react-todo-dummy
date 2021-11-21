@@ -1,6 +1,26 @@
 @import "./scss/variables";
 
 .content-wrapper{
+  width: 100%;
   position: relative;
   z-index: 1;
+  padding: 15px;
+  background-color: #ffffff;
+}
+
+@media (min-width: 576px) { 
+  
+  .content-wrapper{
+    margin: 15px auto;
+    border: solid 1px $divider-color;
+    width: 500px
+  }
+
+}
+
+.flex-center{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 15px;
 }

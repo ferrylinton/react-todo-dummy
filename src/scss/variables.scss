@@ -6,6 +6,7 @@ $accent-color:         #4CAF50;
 $primary-text-color:   #212121;
 $secondary-text-color: #757575;
 $divider-color:        #BDBDBD;
+$gray:                  #dddddd;
 
 @mixin font-weight($weight) {
   $weights: (thin: 100,

@@ -1,0 +1,48 @@
+@import "../../scss/variables";
+
+.todo-item{
+  border-bottom: solid 1px #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  span:first-child{
+    font-size: 18px;
+  }
+
+  .secondary{
+    font-size: 12px;
+    color: $secondary-text-color;
+  }
+}
+
+.todo-item:first-child{
+  border-top: solid 1px #ddd;
+}
+
+.todo-item-text{
+  display: flex;
+  flex-flow: column;
+  padding: 8px 0;
+}
+
+.todo-item-button{
+  display: inline-block;
+  font-size: 25px;
+  padding: 8px 10px;
+
+  svg{
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+
+.completed{
+  .todo-item-text{
+    span:first-child{
+      text-decoration: line-through;
+      color: $accent-color;
+    }
+    
+  }
+}
