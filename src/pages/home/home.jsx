@@ -4,56 +4,48 @@ import { FaSearch, FaPlusCircle } from "react-icons/fa";
 import TodoItem from "../../components/todo-item/todo-item";
 import Modal from "../../components/modal/modal";
 
-import './home.scss';
+import {get, add} from "../../services/todo-service";
 
-function generateId() {
-  return (Date.now().toString(36) + Math.random().toString(36).substr(2, 5)).toUpperCase();
-}
+import './home.scss';
 
 function Home() {
 
 
-  const [todos, setTodos] = React.useState([
-    {
-      id: generateId(),
-      task: "This is a sampe todo",
-      created: new Date(),
-      completed: true
-    },
-    {
-      id: generateId(),
-      task: "This is a sampe todo",
-      created: new Date(),
-      completed: false
-    }
-  ]);
+  const [todos, setTodos] = React.useState(get());
   const [openModal, setOpenModal] = React.useState(false);
   const [task, setTask] = React.useState("");
 
-  const add = () => {
-    setOpenModal(true);
+  const showAddModal = () => {
+    toggle();
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setOpenModal(false);
+    toggle();
 
-    const newTodos = [...todos, {
-      id: generateId(),
-      task,
-      created: new Date(),
-      completed: false
-    }];
-    setTodos(newTodos);
+    console.log(e.target.task.value);
 
+    add(e.target.task.value)
+    setTodos(get());
     setTask("");
   }
 
   const toggle = () => {
     setOpenModal(!openModal);
+    toggleScrollLock();
   }
 
+  const toggleScrollLock = () => {
+    document.querySelector('html').classList.toggle('scroll-lock');
+  };
+
   const handleTaskChange = (e) => setTask(e.target.value);
+
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({ [name]: value });
+  }
 
   React.useEffect(() => {    
     console.log(`openModal : ${openModal}`);
@@ -68,7 +60,7 @@ function Home() {
           <button><FaSearch /></button>
         </div>
         <div className="add-box">
-          <button onClick={add}><FaPlusCircle /><span>ADD</span></button>
+          <button onClick={showAddModal}><FaPlusCircle /><span>ADD</span></button>
         </div>
         <div className="todos">
           {todos.map((todo, index) => (
@@ -80,7 +72,7 @@ function Home() {
           ))}
         </div>
       </div>
-      <Modal openModal={openModal} toggle={toggle} handleSubmit={handleSubmit} task={task} handleTaskChange={handleTaskChange} />
+      {openModal ? (<Modal toggle={toggle} handleSubmit={handleSubmit} task={task} handleTaskChange={handleTaskChange} />) : null}
     </>
   )
 }
