@@ -4,31 +4,34 @@ import { FaSearch, FaPlusCircle } from "react-icons/fa";
 import TodoItem from "../../components/todo-item/todo-item";
 import Modal from "../../components/modal/modal";
 
-import { get, add, update } from "../../services/todo-service";
+import { get, search, add, update } from "../../services/todo-service";
 
 import './home.scss';
 
-function Home() {
+const initTodo = {
+  id: 0,
+  task: "",
+  status: "NEW",
+  email: "ferrylinton@gmail.com",
+  createdAt: new Date(),
+  updatedAt: null
+}
 
-  const initTodo = {
-    id: 0,
-    task: "",
-    created: null,
-    completed: false
-  }
+function Home() {
 
   const [todos, setTodos] = React.useState(get());
   const [openModal, setOpenModal] = React.useState(false);
   const [todo, setTodo] = React.useState(initTodo);
+  const [keyword, setKeyword] = React.useState("");
 
   const showAddModal = () => {
+    setKeyword("");
     setTodo(initTodo);
     toggle();
   }
 
   const showEditModal = (todo) => {
-    console.log('showEditModal ....');
-    console.log(todo);
+    setKeyword("");
     setTodo(todo);
     toggle();
   }
@@ -37,15 +40,12 @@ function Home() {
     e.preventDefault();
     toggle();
 
-    if(todo.id === 0){
-      console.log('add.............');
+    if (todo.id === 0) {
       add(todo);
-    }else{
-      console.log('update............');
-      console.log(todo);
+    } else {
       update(todo);
     }
-    
+
     setTodos(get());
     setTodo(initTodo);
   }
@@ -60,24 +60,31 @@ function Home() {
   };
 
   const onChange = (e) => {
-    console.log("onChange.............");
-    console.log(e.target.name + " : " + e.target.value);
     const { value, name } = e.target;
     setTodo({ ...todo, [name]: value });
   }
 
+  const onKeywordChange = (e) => {
+    const { value } = e.target;
+    setKeyword(value)
+  }
+
+  const onSearch = (e) => {
+    e.preventDefault();
+    setTodos(search(keyword));
+  }
+
   React.useEffect(() => {
-    console.log(`openModal : ${openModal}`);
-    console.log(`todo : ${JSON.stringify(todo)}`);
-  });
+    console.log(keyword);
+  })
 
   return (
     <>
       <div className="flex-center">
-        <div className="search-box">
-          <input type="text" placeholder="Search..." />
-          <button><FaSearch /></button>
-        </div>
+        <form id="search-form" name="search-form" className="search-box" autoComplete="false" onSubmit={onSearch}>
+          <input type="text" placeholder="Search..." value={keyword} onChange={onKeywordChange} />
+          <button type="submit"><FaSearch /></button>
+        </form>
         <div className="add-box">
           <button onClick={showAddModal}><FaPlusCircle /><span>ADD</span></button>
         </div>

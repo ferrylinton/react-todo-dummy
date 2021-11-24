@@ -3,123 +3,56 @@ import { generateId } from "./id-service";
 var datas = [
   {
     id: generateId(),
-    task: "This is a sampe todo",
-    created: new Date(),
-    completed: true
+    task: "Todo NEW",
+    status: "NEW",
+    email:"ferrylinton@gmail.com",
+    createdAt: new Date(),
+    updatedAt: null
   },
   {
     id: generateId(),
-    task: "This is a sampe todo",
-    created: new Date(),
-    completed: false
+    task: "Todo DONE",
+    status: "DONE",
+    email:"ferrylinton@gmail.com",
+    createdAt: new Date(),
+    updatedAt: new Date()
   },
   {
     id: generateId(),
-    task: "This is a sampe todo",
-    created: new Date(),
-    completed: true
-  },
-  {
-    id: generateId(),
-    task: "This is a sampe todo",
-    created: new Date(),
-    completed: false
-  },
-  {
-    id: generateId(),
-    task: "This is a sampe todo",
-    created: new Date(),
-    completed: true
-  },
-  {
-    id: generateId(),
-    task: "This is a sampe todo",
-    created: new Date(),
-    completed: false
-  },
-  {
-    id: generateId(),
-    task: "This is a sampe todo",
-    created: new Date(),
-    completed: true
-  },
-  {
-    id: generateId(),
-    task: "This is a sampe todo",
-    created: new Date(),
-    completed: false
-  },
-  {
-    id: generateId(),
-    task: "This is a sampe todo",
-    created: new Date(),
-    completed: true
-  },
-  {
-    id: generateId(),
-    task: "This is a sampe todo",
-    created: new Date(),
-    completed: false
-  },
-  {
-    id: generateId(),
-    task: "This is a sampe todo",
-    created: new Date(),
-    completed: true
-  },
-  {
-    id: generateId(),
-    task: "This is a sampe todo",
-    created: new Date(),
-    completed: false
-  },
-  {
-    id: generateId(),
-    task: "This is a sampe todo",
-    created: new Date(),
-    completed: true
-  },
-  {
-    id: generateId(),
-    task: "This is a sampe todo",
-    created: new Date(),
-    completed: false
-  },
-  {
-    id: generateId(),
-    task: "This is a sampe todo",
-    created: new Date(),
-    completed: true
-  },
-  {
-    id: generateId(),
-    task: "This is a sampe todo",
-    created: new Date(),
-    completed: false
+    task: "Todo DELETED",
+    status: "DELETED",
+    email:"ferrylinton@gmail.com",
+    createdAt: new Date(),
+    updatedAt: new Date()
   }
 ];
 
 export const get = () => {
-  console.log(datas);
   return datas;
 }
 
-export const add = ({ task }) => {
-  console.log(`.......... add ${task}`);
+export const search = (keyword) => {
+  return datas.filter(todo => todo.task.toLowerCase().includes(keyword.toLowerCase()));
+}
+
+export const add = ({ task, email }) => {
   datas.push({
     id: generateId(),
     task,
-    created: new Date(),
-    completed: false
+    status: "NEW",
+    email,
+    createdAt: new Date(),
+    updatedAt: null
   });
 }
 
-export const update = ({ id, task, completed }) => {
+export const update = ({ id, task, status, email }) => {
   if(id){
     const index = datas.findIndex(obj => obj.id === id);
 
     if(index !== -1){
-      const todo = { ...datas[index], task, completed };
+      const updatedAt = new Date();
+      const todo = { ...datas[index], task, status, email, updatedAt };
 
       datas = [
         ...datas.slice(0, index),
@@ -135,7 +68,8 @@ export const remove = (id) => {
     const index = datas.findIndex(obj => obj.id === id);
 
     if(index !== -1){
-      datas.splice(index, 1);
+      datas[index].status = "DELETED";
+      datas[index].updatedAt = new Date();
     }
   } 
 }

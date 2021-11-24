@@ -11,8 +11,6 @@
   position: fixed;
 }
 
-
-/* Modal Content */
 .modal-content {
   position: fixed;
   top: 20px;
@@ -20,33 +18,9 @@
   transform: translate(-50%, 0);
   background-color: #fefefe;
   padding: 50px 0 0 0;
-  width: calc(100% - 40px);
-  //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-@media (min-width: 576px) {
-
-  .modal-content {
-    width: 500px;
-  }
-
-}
-
-.modal-header {
-  padding: 10px;
-  border-bottom: solid 1px #ddd;
-}
-
-.modal-body {
-  padding: 2px 16px;
-}
-
-.title {
-  position: absolute;
-  left: 18px;
-  top: 10px;
-  color: $secondary-text-color;
-  text-transform: uppercase;
+  width: 400px;
+  min-width: 400px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .close {
@@ -81,74 +55,54 @@
 }
 
 .form {
-  width: 100%;
-  margin: 15px 0;
+  margin: 20px;
 
-  input[type="text"] {
+  input[type="text"], select {
     width: 100%;
     display: block;
     border: solid 1px #dddddd;
     padding: 10px;
+    margin-bottom: 5px;
+    outline: none;
+  }
+
+  select {
+    grid-template-areas: "select";
+    grid-area: select;
+    align-items: center;
+  }
+  
+
+  select::after {
+    content: "";
+    width: 0.8em;
+    height: 0.5em;
+    background-color: var(--select-arrow);
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    grid-area: select;
   }
 
   .buttons {
-    margin-top: 20px;
+    margin-top: 30px;
     display: flex;
-    justify-content: flex-end;
+    gap: 4px;
+
+    .btn{
+      width: 50%;
+      margin: 0;
+      font-size: 16px;
+    }
+  }
+
+  input[type=text]:focus, select:focus {
+    border: 1px solid #9ca3c4;
+    box-shadow: 0 0 5px #a1acef;
+    outline: none;
   }
 }
 
 .scroll-lock {
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   margin-right: 17px;
-}
-
-
-
-
-
-
-
-
-
-
-
-.formxx {
-
-  display: flex;
-  flex-direction: column;
-
-
-  label {
-    margin-bottom: 15px;
-    position: relative;
-    border-bottom: 1px solid #ddd;
-  }
-
-  input {
-    width: 100%;
-    padding: 10px 0px;
-    margin-top: 20px;
-    border: none;
-    outline: none;
-  }
-
-  input::placeholder {
-    opacity: 0;
-  }
-
-  span {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translateY(30px);
-    font-size: 0.825em;
-    transition-duration: 300ms;
-  }
-
-  label:focus-within>span,
-  input:not(:placeholder-shown)+span {
-    color: $secondary-text-color;
-    transform: translateY(0px);
-  }
 }

@@ -30,19 +30,35 @@
   display: inline-block;
   font-size: 25px;
   padding: 8px 10px;
+  border: none;
+  background-color: transparent;
+  color: lighten($primary-text-color, 30%);
+  cursor: pointer;
 
   svg{
     display: inline-block;
     vertical-align: middle;
   }
+  
+  &:hover{
+    color: $primary-text-color;
+  }
 }
 
-.completed{
+.done{
   .todo-item-text{
     span:first-child{
       text-decoration: line-through;
       color: $accent-color;
     }
-    
+  }
+}
+
+.deleted{
+  .todo-item-text{
+    span:first-child{
+      text-decoration: line-through;
+      color: $red;
+    }
   }
 }
