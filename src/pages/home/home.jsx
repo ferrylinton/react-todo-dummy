@@ -4,30 +4,50 @@ import { FaSearch, FaPlusCircle } from "react-icons/fa";
 import TodoItem from "../../components/todo-item/todo-item";
 import Modal from "../../components/modal/modal";
 
-import {get, add} from "../../services/todo-service";
+import { get, add, update } from "../../services/todo-service";
 
 import './home.scss';
 
 function Home() {
 
+  const initTodo = {
+    id: 0,
+    task: "",
+    created: null,
+    completed: false
+  }
 
   const [todos, setTodos] = React.useState(get());
   const [openModal, setOpenModal] = React.useState(false);
-  const [task, setTask] = React.useState("");
+  const [todo, setTodo] = React.useState(initTodo);
 
   const showAddModal = () => {
+    setTodo(initTodo);
     toggle();
   }
 
-  const handleSubmit = (e) => {
+  const showEditModal = (todo) => {
+    console.log('showEditModal ....');
+    console.log(todo);
+    setTodo(todo);
+    toggle();
+  }
+
+  const onSubmit = (e) => {
     e.preventDefault();
     toggle();
 
-    console.log(e.target.task.value);
-
-    add(e.target.task.value)
+    if(todo.id === 0){
+      console.log('add.............');
+      add(todo);
+    }else{
+      console.log('update............');
+      console.log(todo);
+      update(todo);
+    }
+    
     setTodos(get());
-    setTask("");
+    setTodo(initTodo);
   }
 
   const toggle = () => {
@@ -39,17 +59,16 @@ function Home() {
     document.querySelector('html').classList.toggle('scroll-lock');
   };
 
-  const handleTaskChange = (e) => setTask(e.target.value);
-
-  const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    this.setState({ [name]: value });
+  const onChange = (e) => {
+    console.log("onChange.............");
+    console.log(e.target.name + " : " + e.target.value);
+    const { value, name } = e.target;
+    setTodo({ ...todo, [name]: value });
   }
 
-  React.useEffect(() => {    
+  React.useEffect(() => {
     console.log(`openModal : ${openModal}`);
-    console.log(`task : ${task}`);
+    console.log(`todo : ${JSON.stringify(todo)}`);
   });
 
   return (
@@ -65,14 +84,15 @@ function Home() {
         <div className="todos">
           {todos.map((todo, index) => (
             <TodoItem
-              key={index}
+              key={todo.id}
               index={index}
               todo={todo}
+              showEditModal={showEditModal}
             />
           ))}
         </div>
       </div>
-      {openModal ? (<Modal toggle={toggle} handleSubmit={handleSubmit} task={task} handleTaskChange={handleTaskChange} />) : null}
+      {openModal ? (<Modal toggle={toggle} onSubmit={onSubmit} todo={todo} onChange={onChange} />) : null}
     </>
   )
 }

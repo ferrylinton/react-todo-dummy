@@ -45,11 +45,7 @@ class Modal extends React.Component {
   }
 
   onClickOutside = e => {
-    const element = e.target;
-    console.log('onClickOutside ....');
-    console.log(element);
-    if (this.modalContentRef.current && !this.modalContentRef.current.contains(element)) {
-      console.log('close modal ....');
+    if (this.modalContentRef.current && !this.modalContentRef.current.contains(e.target)) {
       e.preventDefault();
       e.stopPropagation();
       this.props.toggle();
@@ -62,9 +58,8 @@ class Modal extends React.Component {
         <div className="modal-content" ref={this.modalContentRef}>
           <span className="close" onClick={this.props.toggle}></span>
           <div className="modal-body">
-            <form className="form" autoComplete="false" onSubmit={this.props.handleSubmit}>
-              <input type="text" id="task" name="task" placeholder="Task" value={this.props.task} onChange={this.props.handleTaskChange} ref={this.taskRef} autoComplete="off" />
-
+            <form className="form" autoComplete="false" onSubmit={this.props.onSubmit}>
+              <input type="text" id="task" name="task" placeholder="Task" value={this.props.todo.task} onChange={this.props.onChange} ref={this.taskRef} autoComplete="off" />
               <div className="buttons">
                 <button type="button" className="btn" onClick={this.props.toggle}>Cancel</button>
                 <button type="submit" className="btn primary">Save</button>
