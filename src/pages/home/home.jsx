@@ -23,44 +23,56 @@ function Home() {
   const [openModal, setOpenModal] = React.useState(false);
   const [todo, setTodo] = React.useState(initTodo);
   const [keyword, setKeyword] = React.useState("");
+  const [valid, setValid] = React.useState(false);
+  const [submit, setSubmit] = React.useState(false);
+  const [errors, setErrors] = React.useState({});
 
   const showAddModal = () => {
     setKeyword("");
+    setSubmit(false);
     setTodo(initTodo);
     toggle();
   }
 
   const showEditModal = (todo) => {
     setKeyword("");
+    setSubmit(false);
     setTodo(todo);
     toggle();
   }
 
   const onSubmit = (e) => {
     e.preventDefault();
-    toggle();
+    setSubmit(true);
+    validate("task", todo.task);
+  }
 
-    if (todo.id === 0) {
-      add(todo);
-    } else {
-      update(todo);
+  const validate = (name, value) => {
+    let errors = {};
+
+    if (name === 'task') {
+      let isTaskValid = value.length >= 3;
+
+      if (!isTaskValid) {
+        errors.task = 'Task length min 3 characters';
+      }
     }
 
-    setTodos(get());
-    setTodo(initTodo);
+    setErrors(errors);
+
+    if (!!Object.keys(errors).length) {
+      setValid(false);
+    } else {
+      setValid(true);
+    }
   }
 
   const toggle = () => {
     setOpenModal(!openModal);
-    toggleScrollLock();
   }
 
-  const toggleScrollLock = () => {
-    document.querySelector('html').classList.toggle('scroll-lock');
-  };
-
   const onChange = (e) => {
-    const { value, name } = e.target;
+    const { name, value } = e.target;
     setTodo({ ...todo, [name]: value });
   }
 
@@ -75,8 +87,21 @@ function Home() {
   }
 
   React.useEffect(() => {
-    console.log(keyword);
-  })
+    if (valid && submit) {
+      setOpenModal(false);
+
+      if (todo.id === 0) {
+        add(todo);
+      } else {
+        update(todo);
+      }
+
+      setTodos(get());
+      setTodo(initTodo);
+      setValid(false);
+      setSubmit(false);
+    }
+  }, [todo, valid, submit])
 
   return (
     <>
@@ -97,9 +122,10 @@ function Home() {
               showEditModal={showEditModal}
             />
           ))}
+          {todos.length > 0 ? '' : (<div className="message">No data</div>)}
         </div>
       </div>
-      {openModal ? (<Modal toggle={toggle} onSubmit={onSubmit} todo={todo} onChange={onChange} />) : null}
+      {openModal ? (<Modal toggle={toggle} onSubmit={onSubmit} todo={todo} onChange={onChange} errors={errors} />) : null}
     </>
   )
 }

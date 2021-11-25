@@ -64,7 +64,13 @@
     padding: 10px;
     margin-bottom: 5px;
     outline: none;
+
+    &.error{
+      border: solid 1px $red;
+    }
   }
+
+  
 
   select {
     grid-template-areas: "select";
@@ -98,6 +104,11 @@
     border: 1px solid #9ca3c4;
     box-shadow: 0 0 5px #a1acef;
     outline: none;
+
+    &.error{
+      border: solid 1px #eb7373;
+      box-shadow: 0 0 5px #e79898;
+    }
   }
 }
 
@@ -105,4 +116,12 @@
   overflow-x: auto;
   overflow-y: hidden;
   margin-right: 17px;
+}
+
+.errors{
+  margin: 15px 20px;
+  padding: 0;
+  list-style: none;
+  color: $red;
+  font-size: 12px;
 }

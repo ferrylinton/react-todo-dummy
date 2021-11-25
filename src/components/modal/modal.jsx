@@ -35,8 +35,8 @@ class Modal extends React.Component {
 
     this.timeline.play();
 
-    setTimeout(function(){ document.body.addEventListener("click", this.onClickOutside) }.bind(this), 200);
-    
+    setTimeout(function () { document.body.addEventListener("click", this.onClickOutside) }.bind(this), 200);
+
   }
 
   componentWillUnmount() {
@@ -58,8 +58,22 @@ class Modal extends React.Component {
         <div className="modal-content" ref={this.modalContentRef}>
           <span className="close" onClick={this.props.toggle}></span>
           <div className="modal-body">
+            {<ul className="errors">
+              {Object.keys(this.props.errors).map((name, index) => (
+                <li key={index}>{this.props.errors[name]}</li>
+              ))}
+            </ul>}
             <form id="todo-form" name="todo-form" className="form" autoComplete="false" onSubmit={this.props.onSubmit}>
-              <input type="text" id="task" name="task" placeholder="Task" value={this.props.todo.task} onChange={this.props.onChange} ref={this.taskRef} autoComplete="off" />
+              <input 
+                type="text" 
+                id="task" 
+                name="task" 
+                placeholder="Task" 
+                value={this.props.todo.task} 
+                onChange={this.props.onChange} 
+                ref={this.taskRef} 
+                autoComplete="off" 
+                className={this.props.errors?.task ? 'error' : ''}/>
               <select id="status" name="status" onChange={this.props.onChange}>
                 <option value="NEW">NEW</option>
                 <option value="DONE">DONE</option>
