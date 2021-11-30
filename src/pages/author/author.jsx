@@ -1,6 +1,6 @@
 function Author(){
   return(
-    <h1>Author</h1>
+    <div className="logo text-center my-3">Author</div>
   )
 }
 

@@ -13,7 +13,7 @@ function Navbar() {
 
   React.useEffect(() => {
     console.log(`showMenu = ${showMenu}`);
-  });
+  }, [showMenu]);
 
   return (
     <nav className={showMenu ? "navbar clearfix active" : "navbar clearfix"}>

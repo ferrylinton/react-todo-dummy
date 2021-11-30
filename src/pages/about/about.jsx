@@ -1,6 +1,6 @@
 function About(){
   return(
-    <h1>About</h1>
+    <div className="logo text-center my-3">todo</div>
   )
 }
 

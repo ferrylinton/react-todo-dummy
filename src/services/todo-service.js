@@ -4,7 +4,15 @@ var datas = [
   {
     id: generateId(),
     task: "Todo NEW",
-    status: "NEW",
+    status: "PENDING",
+    email:"ferrylinton@gmail.com",
+    createdAt: new Date(),
+    updatedAt: null
+  },
+  {
+    id: generateId(),
+    task: "Todo PENDING",
+    status: "PENDING",
     email:"ferrylinton@gmail.com",
     createdAt: new Date(),
     updatedAt: null
@@ -39,7 +47,7 @@ export const add = ({ task, email }) => {
   datas.push({
     id: generateId(),
     task,
-    status: "NEW",
+    status: "PENDING",
     email,
     createdAt: new Date(),
     updatedAt: null

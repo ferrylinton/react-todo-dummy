@@ -3,7 +3,7 @@ import moment from "moment";
 
 import "./todo-item.scss";
 
-function TodoItem({todo, showEditModal}){
+function TodoItem({todo, showTodoModal}){
   let clzName = "todo-item";
 
   if(todo.status === 'DONE'){
@@ -17,7 +17,7 @@ function TodoItem({todo, showEditModal}){
         <span>{todo.task}</span>
         <span className="secondary">{moment(todo.created).format('YYYY-MM-DD HH:mm')}</span>
       </div>
-      {(todo.status === 'NEW') ? <button className="todo-item-button" type="button" onClick={() => showEditModal(todo)}><FaEdit /></button> : null}
+      {(todo.status === 'PENDING') ? <button className="todo-item-button" type="button" onClick={() => showTodoModal(todo)}><FaEdit /></button> : null}
     </div>
   );
 }

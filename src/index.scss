@@ -1,17 +1,17 @@
 @import "./scss/variables";
 
+@font-face {
+  font-family: "Righteous";
+  src: local("Righteous"), url("./fonts/Righteous-Regular.ttf") format("truetype");
+}
+
 html {
   box-sizing: border-box;
   font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
   min-width: 400px;
 }
 
-@media (min-width: 576px) {
 
-  html {
-    background-color: #f1f1f1;
-  }
-}
 
 * {
   margin: 0;
@@ -31,6 +31,14 @@ a {
   &:hover {
     color: darken($primary-text-color, 30%);
   }
+}
+
+.logo{
+  font-family: 'Righteous', cursive;
+  font-weight: bold;
+  font-size: 40px;
+  text-shadow: 1px 1px #0a0a0a;
+  color: var(--bs-gray-500);
 }
 
 
