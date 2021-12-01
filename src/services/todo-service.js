@@ -32,6 +32,102 @@ var datas = [
     email:"ferrylinton@gmail.com",
     createdAt: new Date(),
     updatedAt: new Date()
+  },
+  {
+    id: generateId(),
+    task: "Todo NEW",
+    status: "PENDING",
+    email:"ferrylinton@gmail.com",
+    createdAt: new Date(),
+    updatedAt: null
+  },
+  {
+    id: generateId(),
+    task: "Todo PENDING",
+    status: "PENDING",
+    email:"ferrylinton@gmail.com",
+    createdAt: new Date(),
+    updatedAt: null
+  },
+  {
+    id: generateId(),
+    task: "Todo DONE",
+    status: "DONE",
+    email:"ferrylinton@gmail.com",
+    createdAt: new Date(),
+    updatedAt: new Date()
+  },
+  {
+    id: generateId(),
+    task: "Todo DELETED",
+    status: "DELETED",
+    email:"ferrylinton@gmail.com",
+    createdAt: new Date(),
+    updatedAt: new Date()
+  },
+  {
+    id: generateId(),
+    task: "Todo NEW",
+    status: "PENDING",
+    email:"ferrylinton@gmail.com",
+    createdAt: new Date(),
+    updatedAt: null
+  },
+  {
+    id: generateId(),
+    task: "Todo PENDING",
+    status: "PENDING",
+    email:"ferrylinton@gmail.com",
+    createdAt: new Date(),
+    updatedAt: null
+  },
+  {
+    id: generateId(),
+    task: "Todo DONE",
+    status: "DONE",
+    email:"ferrylinton@gmail.com",
+    createdAt: new Date(),
+    updatedAt: new Date()
+  },
+  {
+    id: generateId(),
+    task: "Todo DELETED",
+    status: "DELETED",
+    email:"ferrylinton@gmail.com",
+    createdAt: new Date(),
+    updatedAt: new Date()
+  },
+  {
+    id: generateId(),
+    task: "Todo NEW",
+    status: "PENDING",
+    email:"ferrylinton@gmail.com",
+    createdAt: new Date(),
+    updatedAt: null
+  },
+  {
+    id: generateId(),
+    task: "Todo PENDING",
+    status: "PENDING",
+    email:"ferrylinton@gmail.com",
+    createdAt: new Date(),
+    updatedAt: null
+  },
+  {
+    id: generateId(),
+    task: "Todo DONE",
+    status: "DONE",
+    email:"ferrylinton@gmail.com",
+    createdAt: new Date(),
+    updatedAt: new Date()
+  },
+  {
+    id: generateId(),
+    task: "Todo DELETED",
+    status: "DELETED",
+    email:"ferrylinton@gmail.com",
+    createdAt: new Date(),
+    updatedAt: new Date()
   }
 ];
 

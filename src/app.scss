@@ -1,26 +1,16 @@
-@import "./scss/variables";
-
-.content-wrapper{
-  width: 100%;
-  position: relative;
-  z-index: 1;
-  padding: 15px;
-  background-color: #ffffff;
+.logo.navbar-brand{
+  font-family: 'Righteous', cursive;
+  line-height: 1;
+  font-size: 38px;
+  text-transform: lowercase;
+  padding: 0;
 }
 
-@media (min-width: 576px) { 
-  
-  .content-wrapper{
-    margin: 15px auto;
-    border: solid 1px $divider-color;
-    width: 500px
-  }
-
+.offcanvas-title.h5{
+  font-family: 'Righteous', cursive;
+  font-size: 30px;
+  font-weight: bold;
+  color: var(--bs-gray-600);
+  line-height: 1;
 }
 
-.flex-center{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  row-gap: 15px;
-}

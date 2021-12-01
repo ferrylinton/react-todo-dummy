@@ -1,18 +1,19 @@
-@import "../../scss/variables";
-
-
 .message{
-  border: solid 1px #ddd;
+  border: solid 1px var(--bs-gray-400);
   text-align: center;
   padding: 10px 0;
-  margin: 15px 0;
+  margin-bottom: 15px;
 }
 
 .todo-item{
-  border-top: solid 1px #ddd;
+  border-top: solid 1px var(--bs-gray-400);
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  &:last-child{
+    border-bottom: solid 1px var(--bs-gray-400);
+  }
 
   span:first-child{
     font-size: 18px;
@@ -20,7 +21,7 @@
 
   .secondary{
     font-size: 12px;
-    color: $secondary-text-color;
+    color: var(--bs-gray-600);
   }
 }
 
@@ -36,7 +37,7 @@
   padding: 8px 10px;
   border: none;
   background-color: transparent;
-  color: lighten($primary-text-color, 30%);
+  color: var(--bs-gray-700);
   cursor: pointer;
 
   svg{
@@ -45,7 +46,7 @@
   }
   
   &:hover{
-    color: $primary-text-color;
+    color: var(--bs-gray-800);
   }
 }
 
@@ -53,7 +54,7 @@
   .todo-item-text{
     span:first-child{
       text-decoration: line-through;
-      color: $accent-color;
+      color: var(--bs-success);
     }
   }
 }
@@ -62,7 +63,7 @@
   .todo-item-text{
     span:first-child{
       text-decoration: line-through;
-      color: $red;
+      color: var(--bs-danger);
     }
   }
 }

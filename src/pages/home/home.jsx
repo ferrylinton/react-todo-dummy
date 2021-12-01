@@ -1,10 +1,12 @@
 import React from "react";
-import { FaSearch, FaPlusCircle } from "react-icons/fa";
+import { Button } from "react-bootstrap";
+import { FaPlusCircle,  FaRedoAlt} from "react-icons/fa";
+import { FiSearch } from "react-icons/fi";
 
 import TodoItem from "../../components/todo-item/todo-item";
 import TodoModal from "../../components/todo-modal/todo-modal";
 
-import { get, search} from "../../services/todo-service";
+import { get, search } from "../../services/todo-service";
 
 import './home.scss';
 
@@ -26,12 +28,12 @@ function Home() {
 
 
   const showTodoModal = (todo) => {
-    if(todo){
+    if (todo) {
       setTodo(todo);
-    }else{
+    } else {
       setTodo(initTodo);
     }
-    
+
     setShow(true);
   }
 
@@ -49,21 +51,31 @@ function Home() {
     setTodos(search(keyword));
   }
 
+  const onReload = () => {
+    setKeyword("");
+    setTodos(search(""));
+  }
+
   React.useEffect(() => {
-    setTodos(get());
+    if(!show){
+      setKeyword("");
+      setTodos(get());
+    }
+    
   }, [show])
 
   return (
-    <>
-    <div className="logo text-center my-3">todo</div>
-    <div className="content-wrapper">
-      <div className="flex-center">
-        <form id="search-form" name="search-form" className="search-box" autoComplete="false" onSubmit={onSearch}>
-          <input type="text" placeholder="Search..." value={keyword} onChange={onKeywordChange} />
-          <button type="submit"><FaSearch /></button>
+    <div className="d-flex justify-content-center">
+      <div className="home-box">
+        <form name="search-form" autoComplete="false" onSubmit={onSearch}>
+          <div className="form-group search-box">
+            <button type="submit"><FiSearch /></button>
+            <input type="text" className="form-control" placeholder="Search..." value={keyword} onChange={onKeywordChange} />
+          </div>
         </form>
-        <div className="add-box">
-          <button onClick={() => showTodoModal()}><FaPlusCircle /><span>ADD</span></button>
+        <div className="buttons">
+          <Button variant="secondary" type="button" onClick={() => onReload()}><FaRedoAlt /><span>REFRESH</span></Button>
+          <Button variant="primary" type="button" onClick={() => showTodoModal()}><FaPlusCircle /><span>ADD</span></Button>
         </div>
         <div className="todos">
           {todos.map(todo => (
@@ -76,9 +88,8 @@ function Home() {
           {todos.length > 0 ? '' : (<div className="message">No data</div>)}
         </div>
       </div>
-      {show ? (<TodoModal closeTodoModal={closeTodoModal} todo={todo} />) : null }
+      {show ? (<TodoModal closeTodoModal={closeTodoModal} todo={todo} />) : null}
     </div>
-    </>
   )
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -39,11 +39,11 @@ function TodoModal(props) {
   return (
     <>
       <Modal show={true} onHide={props.closeTodoModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+        <Modal.Header closeButton className="bg-light text-secondary py-2">
+          <Modal.Title className="fs-5 text-uppercase">{ props.todo.id === '0' ? 'New Data' : 'Update Data'}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form onSubmit={handleSubmit(onSubmit)} className="px-2 pt-4 pb-5" autoComplete="false" noValidate>
+          <form onSubmit={handleSubmit(onSubmit)} className="px-2 py-4" autoComplete="false" noValidate>
 
             <div className="form-group mb-3">
               <input
