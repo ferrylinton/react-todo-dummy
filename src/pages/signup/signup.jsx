@@ -1,4 +1,5 @@
 import React from 'react';
+import { Form, Button } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -41,91 +42,91 @@ function Signup() {
   };
 
   return (
-    <>
-    <div className="logo text-center my-3">todo</div>
+
     <div className="d-flex justify-content-center">
-      <form onSubmit={handleSubmit(onSubmit)} className="border m-3 mt-5 px-4 pb-4 signup-box" autoComplete="false" noValidate>
-        <h3 className="text-secondary text-uppercase text-center fw-bold my-4">Sign Up</h3>
+      <div className="signup-box">
+        <Form onSubmit={handleSubmit(onSubmit)} autoComplete="false" noValidate>
+          <div className="signup-title">Sign Up</div>
 
-        <div className="form-group mb-3">
-          <input
-            name="username"
-            type="text"
-            placeholder="Username"
-            autoComplete="off" 
-            {...register('username')}
-            className={`form-control ${errors.username ? 'is-invalid' : ''}`}
-          />
-          <div className="invalid-feedback">{errors.username?.message}</div>
-        </div>
+          <Form.Group className="mb-3">
+            <Form.Control
+              size="lg"
+              type="text"
+              placeholder="Username"
+              autoComplete="off"
+              {...register('username')}
+              isInvalid={!!errors.username}
+            />
+            <Form.Control.Feedback type="invalid">{errors.username?.message}</Form.Control.Feedback>
+          </Form.Group>
 
-        <div className="form-group mb-3">
-          <input
-            name="email"
-            type="text"
-            placeholder="Email"
-            autoComplete="off" 
-            {...register('email')}
-            className={`form-control ${errors.email ? 'is-invalid' : ''}`}
-          />
-          <div className="invalid-feedback">{errors.email?.message}</div>
-        </div>
+          <Form.Group className="mb-3">
+            <Form.Control
+              size="lg"
+              type="text"
+              placeholder="Email"
+              autoComplete="off"
+              {...register('email')}
+              isInvalid={!!errors.email}
+            />
+            <Form.Control.Feedback type="invalid">{errors.email?.message}</Form.Control.Feedback>
+          </Form.Group>
 
-        <div className="form-group mb-3">
-          <input
-            name="password"
-            type="password"
-            placeholder="Password"
-            autoComplete="off" 
-            {...register('password')}
-            className={`form-control ${errors.password ? 'is-invalid' : ''}`}
-          />
-          <div className="invalid-feedback">{errors.password?.message}</div>
-        </div>
+          <Form.Group className="mb-3">
+            <Form.Control
+              size="lg"
+              type="password"
+              placeholder="Password"
+              autoComplete="off"
+              {...register('password')}
+              isInvalid={!!errors.password}
+            />
+            <Form.Control.Feedback type="invalid">{errors.password?.message}</Form.Control.Feedback>
+          </Form.Group>
 
-        <div className="form-group mb-3">
-          <input
-            name="confirmPassword"
-            type="password"
-            placeholder="Confirm Password"
-            autoComplete="off" 
-            {...register('confirmPassword')}
-            className={`form-control ${errors.confirmPassword ? 'is-invalid' : ''
-              }`}
-          />
-          <div className="invalid-feedback">
-            {errors.confirmPassword?.message}
+          <Form.Group className="mb-3">
+            <Form.Control
+              size="lg"
+              type="password"
+              placeholder="Confirm Password"
+              autoComplete="off"
+              {...register('confirmPassword')}
+              isInvalid={!!errors.password}
+            />
+            <Form.Control.Feedback type="invalid">{errors.confirmPassword?.message}</Form.Control.Feedback>
+          </Form.Group>
+
+          <Form.Group className="mb-4">
+            <Form.Check 
+              size="lg"
+              label="I agree"
+              {...register('acceptTerms')}
+              isInvalid={!!errors.acceptTerms}
+            />
+            <Form.Control.Feedback type="invalid">{errors.acceptTerms?.message}</Form.Control.Feedback>
+          </Form.Group>
+
+          <div className="d-flex">
+            <Button
+              type="reset" 
+              variant="secondary"
+              size="lg"
+              onClick={() => reset()}
+              className="flex-fill">
+              Reset
+            </Button>
+            <Button 
+              type="submit" 
+              variant="primary" 
+              size="lg"
+              className="flex-fill">
+              Sign Up
+            </Button>
           </div>
-        </div>
 
-        <div className="form-group form-check mb-3">
-          <input
-            name="acceptTerms"
-            type="checkbox"
-            {...register('acceptTerms')}
-            className={`form-check-input ${errors.acceptTerms ? 'is-invalid' : ''
-              }`}
-          />
-          <label htmlFor="acceptTerms" className="form-check-label">
-            I have read and agree to the Terms
-          </label>
-          <div className="invalid-feedback">{errors.acceptTerms?.message}</div>
-        </div>
-
-        <div className="d-flex">
-          <button
-            type="button"
-            onClick={() => reset()}
-            className="btn btn-secondary flex-fill">
-            Reset
-          </button>
-          <button type="submit" className="btn btn-primary flex-fill">
-            Sign Up
-          </button>
-        </div>
-      </form>
+        </Form>
+      </div>
     </div>
-    </>
   );
 }
 

@@ -1,10 +1,28 @@
-.signin-box{
-  width: 400px;
+.signin-box {
+  width: 100%;
+  margin: 50px 15px 15px 15px;
+  background-color: #ffffff;
   min-width: 400px;
+  width: 400px;
+  padding: 15px;
 }
 
 @media (min-width: 576px) {
 
+  .signin-box {
+    border: solid 1px var(--bs-gray-400);
+    padding: 30px;
+    width: 450px;
+  }
 
 }
 
+.signin-title {
+  display: block;
+  text-align: center;
+  margin: 0 0 15px 0;
+  color: var(--bs-primary);
+  text-transform: uppercase;
+  font-size: 30px;
+  font-weight: bold;
+}

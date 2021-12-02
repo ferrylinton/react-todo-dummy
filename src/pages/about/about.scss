@@ -1,0 +1,28 @@
+.about-box{
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 15px;
+}
+
+.about-title{
+  text-transform: lowercase;
+  font-size: 50px;
+  color: var(--bs-primary);
+  line-height: 1;
+  font-family: 'Righteous', cursive;
+  font-weight: bold;
+
+  span{
+    text-transform: uppercase;
+    font-size: 25px;
+    color: var(--bs-gray-700);
+  }
+}
+
+.about-description{
+  font-size: 20px;
+}
