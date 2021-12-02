@@ -30,3 +30,39 @@
   color: var(--bs-gray-700);
   line-height: 1;
 }
+
+.author-email{
+  font-size: 30px;
+  color: var(--bs-success);
+  line-height: 1;
+  font-weight: bold;
+}
+
+.author-description {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  p{
+    text-align: left;
+    margin-bottom: 15px;
+  }
+  
+  ul{
+    padding-left: 18px;
+    list-style: square;
+  }
+}
+
+@media (min-width: 576px) { 
+  
+  .author-description {
+
+    p, ul{
+      width: 500px;
+    }
+    
+  }
+
+}
